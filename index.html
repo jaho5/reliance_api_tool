@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reliance API Client</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h1>Reliance API Client</h1>
+    
+    <!-- Authentication -->
+    <div class="card mb-4">
+      <div class="card-header">
+        Authentication
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="endpoint" class="form-label">API Endpoint</label>
+              <input type="text" class="form-control" id="endpoint" value="http://localhost:8080/rest/v1">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+          </div>
+          <div class="col-md-1 d-flex align-items-end">
+            <button id="testAuth" class="btn btn-primary mb-3">Test</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Operations -->
+    <div class="card mb-4">
+      <div class="card-header">
+        Document Operations
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="operation" class="form-label">Select Operation</label>
+          <select class="form-select" id="operation">
+            <option value="getDocuments">Get Documents</option>
+            <option value="createDocument">Create Document</option>
+            <option value="updateDocument">Update Document</option>
+            <option value="routeDocument">Route Document</option>
+          </select>
+        </div>
+
+        <!-- Dynamic parameters section -->
+        <div id="parametersSection" class="mb-3">
+          <!-- Will be populated based on selected operation -->
+        </div>
+
+        <!-- Document JSON Editor (for create/update) -->
+        <div id="jsonEditorSection" class="mb-3 d-none">
+          <label for="documentJson" class="form-label">Document Data (JSON)</label>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="form-control" id="documentJson" rows="10"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div id="documentOptions" class="card">
+                <div class="card-header">Document Options</div>
+                <div class="card-body">
+                  <!-- Will be populated with form fields based on JSON -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="executeOperation" class="btn btn-success">Execute</button>
+      </div>
+    </div>
+
+    <!-- Response -->
+    <div class="card mb-4">
+      <div class="card-header">
+        Response
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <div id="responseStatus" class="alert d-none"></div>
+          <label for="responseData" class="form-label">Response Data</label>
+          <textarea class="form-control" id="responseData" rows="10" readonly></textarea>
+        </div>
+        <button id="clearResponse" class="btn btn-secondary">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/documents.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

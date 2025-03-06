@@ -1,0 +1,61 @@
+/* Custom styles for Reliance API Client */
+
+.form-label {
+  font-weight: 500;
+}
+
+#jsonEditorSection textarea {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#responseData {
+  font-family: monospace;
+  font-size: 14px;
+  background-color: #f8f9fa;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.param-row {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#documentOptions .form-control {
+  margin-bottom: 10px;
+}
+
+/* Loading indicator */
+.loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: loading 0.75s linear infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
