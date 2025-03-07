@@ -42,8 +42,8 @@ const DocumentOperations = {
       needsJsonEditor: true,
       defaultJson: {
         "Document": {
-          "ApplicationName": "",
-          "FormName": "",
+          "applicationName": "",
+          "formName": "",
           "Fields": [
             {
               "fieldName": "",
@@ -199,19 +199,19 @@ const DocumentOperations = {
     // Handle main document properties
     if (json.Document) {
       fields.push({
-        name: 'ApplicationName',
+        name: 'applicationName',
         label: 'Application Name',
         type: 'text',
         value: json.Document.ApplicationName || '',
-        path: 'Document.ApplicationName'
+        path: 'Document.applicationName'
       });
       
       fields.push({
-        name: 'FormName',
+        name: 'formName',
         label: 'Form Name',
         type: 'text',
         value: json.Document.FormName || '',
-        path: 'Document.FormName'
+        path: 'Document.formName'
       });
       
       if (json.Document.DocumentID) {
