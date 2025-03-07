@@ -31,7 +31,8 @@ const ApiClient = {
   getHeaders(contentType = 'application/json') {
     const headers = new Headers();
     headers.append('Content-Type', contentType);
-    
+    headers.append('origin', 'http://localhost');    
+
     // Add Basic authentication
     if (this.config.username && this.config.password) {
       const auth = btoa(`${this.config.username}:${this.config.password}`);
@@ -49,7 +50,7 @@ const ApiClient = {
     try {
       // We'll test auth by trying to access a minimal endpoint
       // For this example, let's use a lightweight call
-      const response = await fetch(`${this.config.endpoint}/documents`, {
+      const response = await fetch(`http://localhost:8080/${this.config.endpoint}/documents`, {
         method: 'OPTIONS',
         headers: this.getHeaders()
       });
@@ -106,7 +107,7 @@ const ApiClient = {
       }
       
       // Make the request
-      const response = await fetch(url, options);
+      const response = await fetch(`http://localhost:8080/${url}`, options);
       
       // Parse response based on content type
       let responseData;
