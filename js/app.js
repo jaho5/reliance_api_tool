@@ -4,6 +4,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Pre-fill form with configuration defaults
+  document.getElementById('endpoint').value = document.getElementById('endpoint').value || Config.api.endpoint;
+  document.getElementById('username').value = document.getElementById('username').value || Config.api.username;
+  document.getElementById('password').value = document.getElementById('password').value || Config.api.password;
+  
   // Initialize UI
   UI.init();
   

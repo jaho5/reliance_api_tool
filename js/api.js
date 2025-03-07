@@ -19,15 +19,17 @@ const ApiClient = {
    * @param {string} password - Password for authentication
    */
   init(endpoint, username, password) {
-    this.config.endpoint = endpoint.endsWith('/') ? endpoint.slice(0, -1) : endpoint;
-    this.config.username = username;
-    this.config.password = password;
+    // Use provided values or fall back to config defaults
+    this.config.endpoint = endpoint || Config.api.endpoint || '';
+    if (this.config.endpoint.endsWith('/')) {
+      this.config.endpoint = this.config.endpoint.slice(0, -1);
+    }
+    
+    this.config.username = username || Config.api.username || '';
+    this.config.password = password || Config.api.password || '';
   },
 
-  /**
-   * Get authentication headers
-   * @returns {Object} Headers object with authentication
-   */
+  // Rest of the original code remains unchanged...
   getHeaders(contentType = 'application/json') {
     const headers = new Headers();
     headers.append('Content-Type', contentType);
@@ -42,10 +44,6 @@ const ApiClient = {
     return headers;
   },
 
-  /**
-   * Test authentication with the API
-   * @returns {Promise} Result of authentication test
-   */
   async testAuth() {
     try {
       // We'll test auth by trying to access a minimal endpoint
@@ -72,14 +70,6 @@ const ApiClient = {
     }
   },
 
-  /**
-   * Make an API request
-   * @param {string} method - HTTP method (GET, POST, etc.)
-   * @param {string} path - API path (will be appended to endpoint)
-   * @param {Object} data - Data to send (for POST, PUT)
-   * @param {Object} params - Query parameters
-   * @returns {Promise} API response
-   */
   async request(method, path, data = null, params = {}) {
     try {
       // Prepare URL with query parameters if provided
@@ -135,11 +125,6 @@ const ApiClient = {
     }
   },
   
-  /**
-   * Format JSON string with indentation for display
-   * @param {object|string} json - JSON object or string
-   * @returns {string} Formatted JSON string
-   */
   formatJson(json) {
     try {
       const obj = typeof json === 'string' ? JSON.parse(json) : json;
@@ -150,11 +135,6 @@ const ApiClient = {
     }
   },
   
-  /**
-   * Validates if a string is valid JSON
-   * @param {string} jsonString - JSON string to validate
-   * @returns {boolean} True if valid JSON
-   */
   isValidJson(jsonString) {
     try {
       JSON.parse(jsonString);
