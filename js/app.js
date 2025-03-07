@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize UI
   UI.init();
   
+  // Initialize multi-document feature
+  initMultiDocumentFeature();
+  
   // Add sample usage info to help users get started
   const showSampleUsage = () => {
     const sampleJson = {
       "Document": {
-        "ApplicationName": "Training",
-        "FormName": "Certification",
+        "applicationName": "Training",
+        "formName": "Certification",
         "Fields": [
           {
             "fieldName": "CERTIFICATION_TYPE",
@@ -35,8 +38,23 @@ document.addEventListener('DOMContentLoaded', () => {
     UI.updateFormFromJson();
   };
   
-  // Add example button
-  const addExampleButton = () => {
+  // Add multi-document sample button
+  const showMultiDocumentSample = () => {
+    const toggle = document.getElementById('multiDocumentToggle');
+    if (toggle) {
+      toggle.checked = true;
+      
+      // Enable add button
+      document.getElementById('addDocumentBtn').disabled = false;
+    }
+    
+    // Get and display multi-document sample
+    document.getElementById('documentJson').value = MultiDocumentHandler.getSampleMultiDocumentJson();
+    UI.updateFormFromJson();
+  };
+  
+  // Add example buttons
+  const addExampleButtons = () => {
     const container = document.querySelector('#jsonEditorSection .row');
     if (!container) return;
     
@@ -44,16 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
     col.className = 'col-12 mb-2';
     
     const button = document.createElement('button');
-    button.className = 'btn btn-outline-secondary btn-sm';
+    button.className = 'btn btn-outline-secondary btn-sm me-2';
     button.textContent = 'Load Sample Data';
     button.onclick = showSampleUsage;
     
+    const multiButton = document.createElement('button');
+    multiButton.className = 'btn btn-outline-secondary btn-sm';
+    multiButton.textContent = 'Load Multi-Document Sample';
+    multiButton.onclick = showMultiDocumentSample;
+    
     col.appendChild(button);
+    col.appendChild(multiButton);
     container.prepend(col);
   };
   
-  // Add the example button after a short delay to ensure UI is ready
-  setTimeout(addExampleButton, 500);
+  // Add the example buttons after a short delay to ensure UI is ready
+  setTimeout(addExampleButtons, 500);
   
   // Console log for debugging
   console.log('Reliance API Client initialized!');
